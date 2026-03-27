@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Tạo Link Shopee</title>
+<title>Tạo Link Shopee Affiliate</title>
 
 <style>
 body {
@@ -54,6 +54,11 @@ button {
   word-break: break-all;
 }
 
+.copy-btn {
+  background: green;
+  margin-top: 10px;
+}
+
 .guide {
   margin-top: 20px;
   text-align: left;
@@ -73,50 +78,51 @@ button {
 <div class="container">
   <h2>🔥 Tạo Link Shopee</h2>
 
-  <input id="link" placeholder="Dán link Shopee vào đây">
+  <input id="link" placeholder="🔗 Nhập link sản phẩm vào đây">
 
   <button onclick="taoLink()">Tạo Link Ngay</button>
 
   <div id="result"></div>
 
-  <!-- 🔥 HƯỚNG DẪN -->
   <div class="guide">
     <b>Hướng dẫn:</b><br>
     - Sau khi tạo link, nhấn <b>Copy Link</b><br>
     - Dán link dưới bình luận bài đăng này<br>
     - Click vào link để mở Shopee sẽ nhận được mã
   </div>
-
 </div>
 
 <script>
 function taoLink() {
   let link = document.getElementById("link").value.trim();
-  let aff_id = "123456"; // 👉 thay bằng aff_id của bạn
 
   if (!link) {
     alert("Nhập link đi 😅");
     return;
   }
 
+  // 🔥 ID AFFILIATE CỦA BẠN
+  let aff = "an_17361260060";
+
   let newLink;
+
   if (link.includes("?")) {
-    newLink = link + "&aff_id=" + aff_id;
+    newLink = link + "&utm_source=" + aff + "&utm_medium=affiliates";
   } else {
-    newLink = link + "?aff_id=" + aff_id;
+    newLink = link + "?utm_source=" + aff + "&utm_medium=affiliates";
   }
 
   document.getElementById("result").innerHTML = `
     <p><b>Link của bạn:</b></p>
     <a href="${newLink}" target="_blank">${newLink}</a>
-    <br><br>
-    <button onclick="copyLink('${newLink}')">Copy Link</button>
+    <br>
+    <button class="copy-btn" onclick="copyLink('${newLink}')">Copy Link</button>
   `;
 }
 
 function copyLink(text) {
   navigator.clipboard.writeText(text);
-  alert("Đã copy!");
+  alert("Đã copy link!");
 }
 </script>
 
