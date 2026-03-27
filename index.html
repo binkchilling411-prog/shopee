@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tạo Link Shopee</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #ff6a00, #ff3c00);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h2 {
+  color: #ff3c00;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  background: #ff3c00;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#result {
+  margin-top: 15px;
+  word-break: break-all;
+}
+
+.guide {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🔥 Tạo Link Shopee</h2>
+
+  <input id="link" placeholder="Dán link Shopee vào đây">
+
+  <button onclick="taoLink()">Tạo Link Ngay</button>
+
+  <div id="result"></div>
+
+  <!-- 🔥 HƯỚNG DẪN -->
+  <div class="guide">
+    <b>Hướng dẫn:</b><br>
+    - Sau khi tạo link, nhấn <b>Copy Link</b><br>
+    - Dán link dưới bình luận bài đăng này<br>
+    - Click vào link để mở Shopee sẽ nhận được mã
+  </div>
+
+</div>
+
+<script>
+function taoLink() {
+  let link = document.getElementById("link").value.trim();
+  let aff_id = "123456"; // 👉 thay bằng aff_id của bạn
+
+  if (!link) {
+    alert("Nhập link đi 😅");
+    return;
+  }
+
+  let newLink;
+  if (link.includes("?")) {
+    newLink = link + "&aff_id=" + aff_id;
+  } else {
+    newLink = link + "?aff_id=" + aff_id;
+  }
+
+  document.getElementById("result").innerHTML = `
+    <p><b>Link của bạn:</b></p>
+    <a href="${newLink}" target="_blank">${newLink}</a>
+    <br><br>
+    <button onclick="copyLink('${newLink}')">Copy Link</button>
+  `;
+}
+
+function copyLink(text) {
+  navigator.clipboard.writeText(text);
+  alert("Đã copy!");
+}
+</script>
+
+</body>
+</html>
